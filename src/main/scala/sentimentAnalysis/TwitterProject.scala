@@ -1,7 +1,6 @@
 package sentimentAnalysis
 
 import org.apache.log4j.{Level, Logger}
-import sentimentAnalysis.dataModel.TwitterDeepInfoMapper
 import sentimentAnalysis.kafka.{CustomKafkaProducerImpl, KafkaConfig}
 import sentimentAnalysis.spark.SparkJobExecutorService
 import sentimentAnalysis.twitter4j.TwitterStreamStarter
