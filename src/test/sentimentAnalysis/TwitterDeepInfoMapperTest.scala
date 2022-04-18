@@ -7,8 +7,6 @@ import sentimentAnalysis.dataModel.repositoryDto.TwitterDeepInfoRepoDto
 
 class TwitterDeepInfoMapperTest extends AnyFlatSpec {
 
-  private val twitterDeepInfoMapper = new TwitterDeepInfoMapper()
-
   private val initialValue = TwitterDeepInfo(
     id = 1,
     text = "test",
@@ -28,7 +26,7 @@ class TwitterDeepInfoMapperTest extends AnyFlatSpec {
       hashtags = "{ok}{ko}"
     )
 
-    val result = twitterDeepInfoMapper.toDto(initialValue)
+    val result = TwitterDeepInfoMapper.toDto(initialValue)
 
     assertResult(expectedResult)(result)
   }

@@ -3,6 +3,7 @@ package sentimentAnalysis
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.{col, from_json}
 import org.scalatest.flatspec.AnyFlatSpec
+import sentimentAnalysis.dataModel.TwitterDeepInfoMapper
 import sentimentAnalysis.dataModel.entities.{TwitterDeepInfo, TwitterStatus}
 import sentimentAnalysis.dataModel.repositoryDto.TwitterDeepInfoRepoDto
 import sentimentAnalysis.spark.SparkJobExecutorService
@@ -11,7 +12,7 @@ import sentimentAnalysis.spark.schema.Schemas.{twitterDeepInfoRestDtoSchema, twi
 
 class SparkJobExecutorTest extends AnyFlatSpec {
 
-  private val twitterJobExecutorService = new SparkJobExecutorService()
+  private val twitterJobExecutorService = new SparkJobExecutorService(TwitterDeepInfoMapper.toDto)
 
   private val spark: SparkSession = SparkSession.builder()
     .appName("test")

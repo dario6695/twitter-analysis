@@ -2,13 +2,14 @@ package sentimentAnalysis.spark
 
 import org.apache.spark.sql.functions.{col, expr, from_json}
 import org.apache.spark.sql.{Dataset, SaveMode, SparkSession}
-import sentimentAnalysis.dataModel.TwitterDeepInfoMapper
 import sentimentAnalysis.dataModel.entities.{TwitterDeepInfo, TwitterStatus}
 import sentimentAnalysis.dataModel.repositoryDto.TwitterDeepInfoRepoDto
 import sentimentAnalysis.spark.schema.Schemas.{twitterDeepInfoSchema, twitterStatusSchema}
 import sentimentAnalysis.utils.PostgresConf
 
-class SparkJobExecutorService() {
+class SparkJobExecutorService(
+                             twitterDeepInfoToDto: TwitterDeepInfo => TwitterDeepInfoRepoDto
+                             ) {
 
   val spark = SparkSession.builder()
     .appName("Twitter analysis")
@@ -136,10 +137,9 @@ class SparkJobExecutorService() {
   }
 
   def operationsOverDeepTweets(twitterDs: Dataset[TwitterDeepInfo]): Dataset[TwitterDeepInfoRepoDto] = {
-    val twitterDeepInfoMapper = new TwitterDeepInfoMapper
 
     twitterDs
-      .map(twitterDeepInfoMapper.toDto)
+      .map(twitterDeepInfoToDto)
       .filter(tweet => tweet.text.toLowerCase.contains("ikea") & tweet.hashtags.contains("sustainability"))
   }
 

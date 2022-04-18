@@ -3,7 +3,7 @@ package sentimentAnalysis.dataModel
 import sentimentAnalysis.dataModel.entities.TwitterDeepInfo
 import sentimentAnalysis.dataModel.repositoryDto.TwitterDeepInfoRepoDto
 
-class TwitterDeepInfoMapper extends java.io.Serializable{
+object TwitterDeepInfoMapper{
 
   def toDto(entity: TwitterDeepInfo): TwitterDeepInfoRepoDto = {
     TwitterDeepInfoRepoDto(
