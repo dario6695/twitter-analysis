@@ -7,7 +7,7 @@ import java.io._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class TweeterStreamStarter(tweetKafkaProducer: CustomKafkaProducer) {
+class TwitterStreamStarter(tweetKafkaProducer: CustomKafkaProducer) {
 
 
   private def statusListener: StatusListener = new StatusListener {
@@ -34,7 +34,7 @@ class TweeterStreamStarter(tweetKafkaProducer: CustomKafkaProducer) {
 
   def getTwitterStream(): Future[TwitterStream] = Future {
     try {
-      new TwitterStreamFactory(Tweeter4jConfigurations.configBuilder.build())
+      new TwitterStreamFactory(Twitter4jConfigurations.configBuilder.build())
         .getInstance()
         .addListener(statusListener)
         .sample("en")

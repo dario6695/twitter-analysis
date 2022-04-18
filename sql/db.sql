@@ -18,6 +18,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --Setup database
-DROP DATABASE IF EXISTS tweeter;
-CREATE DATABASE tweeter;
-\c tweeter;
+DROP DATABASE IF EXISTS twitter;
+CREATE DATABASE twitter;
+\c twitter;

@@ -2,7 +2,7 @@ package sentimentAnalysis.twitter4j
 
 import twitter4j.conf.ConfigurationBuilder
 
-object Tweeter4jConfigurations {
+object Twitter4jConfigurations {
 
   lazy val configBuilder: ConfigurationBuilder = getConfigurations
 
