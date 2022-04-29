@@ -34,12 +34,12 @@ class SparkJobExecutorService(
   }
 
 
-  //persist Ikea related tweet data inside postgres
+  //tweet data inside postgres
   def persistTweetsStreaming() =  {
 
     val twitterDS: Dataset[TwitterStatus] = readTweeterStatusStreaming()
 
-    val twitterDsFiltered = filterIkeaTwitterStatus(twitterDS)
+    val twitterDsFiltered = filterCustomTwitterStatus(twitterDS)
 
 
     twitterDsFiltered.writeStream
@@ -79,7 +79,7 @@ class SparkJobExecutorService(
 
     val twitterDS: Dataset[TwitterStatus] = readTwitterStatusBatch()
 
-    val twitterDsFiltered = filterIkeaTwitterStatus(twitterDS)
+    val twitterDsFiltered = filterCustomTwitterStatus(twitterDS)
 
 
     twitterDsFiltered.write
@@ -140,14 +140,14 @@ class SparkJobExecutorService(
 
     twitterDs
       .map(twitterDeepInfoToDto)
-      .filter(tweet => tweet.text.toLowerCase.contains("ikea") & tweet.hashtags.contains("sustainability"))
+      .filter(tweet => tweet.text.toLowerCase.contains("twitter") & tweet.hashtags.contains("elonmusk"))
   }
 
 
 
-  def filterIkeaTwitterStatus(twitterDs: Dataset[TwitterStatus]): Dataset[TwitterStatus] = {
+  def filterCustomTwitterStatus(twitterDs: Dataset[TwitterStatus]): Dataset[TwitterStatus] = {
     twitterDs
-      .filter(tweet => tweet.text.toLowerCase.contains("ikea"))
+      .filter(tweet => tweet.text.toLowerCase.contains("twitter"))
   }
 
 

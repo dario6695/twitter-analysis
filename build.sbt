@@ -17,10 +17,6 @@ resolvers ++= Seq(
   "MavenRepository" at "https://mvnrepository.com"
 )
 
-/*
-  Beware that if you're working on this repository from a work computer,
-  corporate firewalls might block the IDE from downloading the libraries and/or the Docker images in this project.
- */
 libraryDependencies ++= Seq(
 
   //spark
