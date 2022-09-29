@@ -10,6 +10,7 @@ val twitter4jVersion = "4.0.7"
 val kafkaVersion = "2.4.0"
 val log4jVersion = "2.4.1"
 val scalatestVersion = "3.2.11"
+val zioVersion = "2.0.2"
 
 resolvers ++= Seq(
   "bintray-spark-packages" at "https://dl.bintray.com/spark-packages/maven",
@@ -39,6 +40,13 @@ libraryDependencies ++= Seq(
   "org.apache.kafka" %% "kafka" % kafkaVersion,
   "org.apache.kafka" % "kafka-streams" % kafkaVersion,
 
+  //zio
+  "dev.zio" %% "zio" % zioVersion,
+
   //test
-  "org.scalatest" %% "scalatest" % scalatestVersion % "test"
+  "org.scalatest" %% "scalatest" % scalatestVersion % "test",
+   "dev.zio" %% "zio-test" % zioVersion % "test",
+  "dev.zio" %% "zio-test-sbt" % zioVersion % "test",
+  "dev.zio" %% "zio-mock" % "1.0.0-RC8" % "test"
+
 )

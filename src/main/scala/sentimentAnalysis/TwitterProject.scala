@@ -3,7 +3,7 @@ package sentimentAnalysis
 import org.apache.log4j.{Level, Logger}
 import sentimentAnalysis.dataModel.TwitterDeepInfoMapper
 import sentimentAnalysis.kafka.{CustomKafkaProducerImpl, KafkaConfig}
-import sentimentAnalysis.spark.SparkJobExecutorService
+import sentimentAnalysis.spark.SparkJobExecutorServiceLive
 import sentimentAnalysis.twitter4j.TwitterStreamStarter
 import sentimentAnalysis.utils.Constants._
 
@@ -21,7 +21,7 @@ object TwitterProject {
 
     twitterStreamStarter.getTwitterStream()
 
-    val sparkJobExecutor = new SparkJobExecutorService(TwitterDeepInfoMapper.toDto)
+    val sparkJobExecutor = new SparkJobExecutorServiceLive(TwitterDeepInfoMapper.toDto)
 
     sparkJobExecutor.persistDeepTweetsStreaming()
 
